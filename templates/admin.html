@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+    <h2>Admin Panel</h2>
+    <p><a href="{{ url_for('add_doctor') }}">+ Naya Doctor Add Karo</a></p>
+
+    <h3>Saari Appointments</h3>
+    {% if appointments %}
+    <table border="1" cellpadding="8">
+        <tr>
+            <th>ID</th>
+            <th>Patient</th>
+            <th>Email</th>
+            <th>Doctor</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Status</th>
+        </tr>
+        {% for a in appointments %}
+        <tr>
+            <td>{{ a['id'] }}</td>
+            <td>{{ a['patient_name'] }}</td>
+            <td>{{ a['patient_email'] }}</td>
+            <td>{{ a['doctor_name'] }}</td>
+            <td>{{ a['date'] }}</td>
+            <td>{{ a['time'] }}</td>
+            <td>{{ a['status'] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+        <p>Abhi koi appointment nahi hai.</p>
+    {% endif %}
+{% endblock %}

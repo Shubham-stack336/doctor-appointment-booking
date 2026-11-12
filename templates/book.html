@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+    <h2>Book Appointment</h2>
+    <p><strong>{{ doctor['name'] }}</strong> ({{ doctor['specialization'] }}) - ₹{{ doctor['fee'] }}</p>
+
+    <form method="POST">
+        <p>
+            <label>Date:</label>
+            <input type="date" name="date" min="{{ today }}" required>
+        </p>
+        <p>
+            <label>Time:</label>
+            <select name="time" required>
+                {% for s in slots %}
+                    <option value="{{ s }}">{{ s }}</option>
+                {% endfor %}
+            </select>
+        </p>
+        <button type="submit">Book karo</button>
+    </form>
+{% endblock %}

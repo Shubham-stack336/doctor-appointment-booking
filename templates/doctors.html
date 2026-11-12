@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+    <h2>Our Doctors</h2>
+
+    <table border="1" cellpadding="8">
+        <tr>
+            <th>Naam</th>
+            <th>Specialization</th>
+            <th>Fee (₹)</th>
+            <th>Action</th>
+        </tr>
+        {% for d in doctors %}
+        <tr>
+            <td>{{ d['name'] }}</td>
+            <td>{{ d['specialization'] }}</td>
+            <td>{{ d['fee'] }}</td>
+            <td><a href="{{ url_for('book', doctor_id=d['id']) }}">Book</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

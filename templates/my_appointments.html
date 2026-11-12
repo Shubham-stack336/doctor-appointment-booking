@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+    <h2>My Appointments</h2>
+
+    {% if appointments %}
+    <table border="1" cellpadding="8">
+        <tr>
+            <th>Doctor</th>
+            <th>Specialization</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Fee (₹)</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+        {% for a in appointments %}
+        <tr>
+            <td>{{ a['doctor_name'] }}</td>
+            <td>{{ a['specialization'] }}</td>
+            <td>{{ a['date'] }}</td>
+            <td>{{ a['time'] }}</td>
+            <td>{{ a['fee'] }}</td>
+            <td>{{ a['status'] }}</td>
+            <td>
+                {% if a['status'] == 'booked' %}
+                <form method="POST" action="{{ url_for('cancel', appointment_id=a['id']) }}"
+                      onsubmit="return confirm('Pakka cancel karna hai?');">
+                    <button type="submit">Cancel</button>
+                </form>
+                {% else %}
+                    -
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+        <p>Abhi koi appointment nahi hai. <a href="{{ url_for('doctors') }}">Doctor chuno</a>.</p>
+    {% endif %}
+{% endblock %}

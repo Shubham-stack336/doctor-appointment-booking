@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+    <h2>Naya Doctor Add Karo</h2>
+    <form method="POST">
+        <p><input type="text" name="name" placeholder="Doctor ka naam" required></p>
+        <p><input type="text" name="specialization" placeholder="Specialization" required></p>
+        <p><input type="number" name="fee" placeholder="Fee (₹)" min="1" required></p>
+        <button type="submit">Add karo</button>
+    </form>
+{% endblock %}
